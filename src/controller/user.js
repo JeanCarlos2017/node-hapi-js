@@ -24,7 +24,7 @@ class UsersController {
         }
     }
 
-    async create(request, h, err) {
+    async create(request, h) {
 
         try {
 
@@ -58,8 +58,19 @@ class UsersController {
         }
     }
 
-    async delete(request) {
-        return Boom.notImplemented()
+    async delete(request, h) {
+        const { id } = request.params
+        try {
+            const deleteUser = await this.Users.findOneAndDelete({_id: id});
+            if (deleteUser){
+                return h.response().code(200)
+            }else {
+                return Boom.badRequest('Could not delete the user')
+            }
+
+        }catch (error) {
+            return Boom.badRequest(error)
+        }
     }
 }
 
