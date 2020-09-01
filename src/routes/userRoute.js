@@ -1,7 +1,7 @@
 import Joi from 'joi'
 
-import UsersController from '../controllers/users'
-import UserModel from '../models/users'
+import UsersController from '../controllers/user'
+import UserModel from '../models/user'
 
 const usersController = new UsersController(UserModel)
 
